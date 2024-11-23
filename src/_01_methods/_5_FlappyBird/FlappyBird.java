@@ -5,9 +5,9 @@ import processing.core.PApplet;
 public class FlappyBird extends PApplet {
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
-    int x = 0;
-    int y = 0;
-    int birdYVelocity = -10;
+    int x = 300;
+    int y = 400;
+    int birdYVelocity = 10;
     boolean mouseHeld = false;
     
     @Override
@@ -26,6 +26,12 @@ public class FlappyBird extends PApplet {
         fill(210, 210, 0);
         stroke(0, 0, 0);
         ellipse(x, y, 100, 100);
+        if(y <= 800) {
+        	birdYVelocity += 2;
+        	y = birdYVelocity;
+        }
+
+        
       
     }
     
@@ -38,6 +44,13 @@ public class FlappyBird extends PApplet {
     	while(heldTime == 0) {
     		mouseHeld = true;
     	}
+    	while(heldTime == 1) {
+    		mouseHeld = false;
+    	}
+    	if(mouseHeld = true) {
+    		birdYVelocity -= 30;
+    	}
+    	
     	
     }
     
