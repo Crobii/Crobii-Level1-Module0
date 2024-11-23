@@ -47,6 +47,7 @@ public class MagicWorms extends PApplet {
 
     @Override
     public void draw() {
+    	makeMagical();
     	for (int i = 0; i < 300; i++) {
     		fill (219, 179, 168);
     		noStroke();
