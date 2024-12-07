@@ -8,6 +8,8 @@ public class FlappyBird extends PApplet {
     int x = 300;
     int y = 400;
     int birdYVelocity = 10;
+    int pipe1X = 800;
+    int pipe2X = 800;
     boolean mouseHeld = false;
     
     @Override
@@ -26,9 +28,22 @@ public class FlappyBird extends PApplet {
         fill(210, 210, 0);
         stroke(0, 0, 0);
         ellipse(x, y, 100, 100);
+        fill(0, 150, 0);
+        rect(pipe1X, 0, 100, 200);
+        rect(pipe2X, 100, 100, 200);
         if(y <= 800) {
         	birdYVelocity += 2;
         	y = birdYVelocity;
+        }
+        if(pipe1X >= 50) {
+        pipe1X -= 1;	
+        }
+        if(pipe2X >= 50) {
+        	pipe1X -= 1;
+        }
+        else {
+        	pipe1X = 800;
+        	pipe2X = 800;
         }
 
         
