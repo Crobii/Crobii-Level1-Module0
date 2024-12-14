@@ -7,10 +7,13 @@ public class FlappyBird extends PApplet {
     static final int HEIGHT = 600;
     int x = 300;
     int y = 400;
-    int birdYVelocity = 10;
+    int birdYVelocity = 1;
     int pipe1X = 800;
-    int pipe2X = 800;
+    int pipe2X = 1200;
     boolean mouseHeld = false;
+    int accelerationY = 1;
+    int pipe1Y = 200;
+    int pipe2Y = 200;
     
     @Override
     public void settings() {
@@ -27,25 +30,43 @@ public class FlappyBird extends PApplet {
         background(0, 0, 210);
         fill(210, 210, 0);
         stroke(0, 0, 0);
-        ellipse(x, y, 100, 100);
+        birdYVelocity += accelerationY;
+        y+= birdYVelocity;
+        ellipse(x, y , 100, 100);
+        
+        
         fill(0, 150, 0);
-        rect(pipe1X, 0, 100, 200);
-        rect(pipe2X, 100, 100, 200);
-        if(y <= 800) {
-        	birdYVelocity += 2;
-        	y = birdYVelocity;
-        }
+        rect(pipe1X, 0, 100, pipe1Y);
+        rect(pipe1X, 400+pipe1Y, 100, 200);
+        rect(pipe2X, 0, 100, pipe1Y);
+        rect(pipe2X, 400+pipe2Y, 100, 200);
+//        if(y <= 800) {
+//        	birdYVelocity += 2;
+//        	y = birdYVelocity;
+//        	
+//        }
         if(pipe1X >= 50) {
         pipe1X -= 1;	
         }
+        else {
+        	pipe1Y = (int) random (50, 250);
+        	pipe1X = 800;
+        }
         if(pipe2X >= 50) {
-        	pipe1X -= 1;
+        	pipe2X -= 1;
         }
         else {
-        	pipe1X = 800;
+        	pipe2Y = (int) random (50, 250);
         	pipe2X = 800;
         }
-
+        if (y == 500 && x == pipe1X) {
+        	y = 10000;
+        	System.out.println("Game Over");
+        }
+        if (y == 0 && x == pipe2X) {
+        	y = 10000;
+        	System.out.println("Game Over");
+        }
         
       
     }
@@ -63,7 +84,7 @@ public class FlappyBird extends PApplet {
     		mouseHeld = false;
     	}
     	if(mouseHeld = true) {
-    		birdYVelocity -= 30;
+    		birdYVelocity  = -15;
     	}
     	
     	
