@@ -12,8 +12,9 @@ public class FlappyBird extends PApplet {
     int pipe2X = 1200;
     boolean mouseHeld = false;
     int accelerationY = 1;
-    int pipe1Y = 200;
-    int pipe2Y = 200;
+    int pipe1Y = (int) random (50, 200);
+    int pipe2Y = (int) random (50, 200);
+    int pipeGap;
     
     @Override
     public void settings() {
@@ -37,9 +38,9 @@ public class FlappyBird extends PApplet {
         
         fill(0, 150, 0);
         rect(pipe1X, 0, 100, pipe1Y);
-        rect(pipe1X, 400+pipe1Y, 100, 200);
-        rect(pipe2X, 0, 100, pipe1Y);
-        rect(pipe2X, 400+pipe2Y, 100, 200);
+        rect(pipe1X, 400, 100, pipe1Y);
+        rect(pipe2X, 0, 100, pipe2Y);
+        rect(pipe2X, 400-pipe2Y, 100, pipe2Y);
 //        if(y <= 800) {
 //        	birdYVelocity += 2;
 //        	y = birdYVelocity;
@@ -59,11 +60,11 @@ public class FlappyBird extends PApplet {
         	pipe2Y = (int) random (50, 250);
         	pipe2X = 800;
         }
-        if (y == 500 && x == pipe1X) {
+        if (y <= pipe1Y  && x == pipe1X) {
         	y = 10000;
         	System.out.println("Game Over");
         }
-        if (y == 0 && x == pipe2X) {
+        if (y  >= pipe2Y && x == pipe2X) {
         	y = 10000;
         	System.out.println("Game Over");
         }
